@@ -1,7 +1,14 @@
-import React from "react";
+"use client";
 
-const layout = () => {
-  return <div>layout</div>;
-};
-
-export default layout;
+export default function DashboardLayout({
+  children, // will be a page or nested layout
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <section className="flex">
+      {/* <Sidebar /> */}
+      <div className="flex-1">{children}</div>
+    </section>
+  );
+}
