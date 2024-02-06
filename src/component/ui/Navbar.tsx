@@ -24,6 +24,7 @@ const Navbars = () => {
     "Team Settings",
     "Help & Feedback",
     "Log Out",
+    { path: "/dashBoard", label: "DashBoard" },
   ];
 
   return (
@@ -79,20 +80,31 @@ const Navbars = () => {
         <NavbarMenu>
           {menuItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
-              <Link
-                className="w-full"
-                color={
-                  index === 2
-                    ? "warning"
-                    : index === menuItems.length - 1
-                    ? "danger"
-                    : "foreground"
-                }
-                href="#"
-                size="lg"
-              >
-                {item}
-              </Link>
+              {typeof item === "string" ? (
+                <Link
+                  className="w-full "
+                  color={
+                    index === 2
+                      ? "warning"
+                      : index === menuItems.length - 1
+                      ? "danger"
+                      : "foreground"
+                  }
+                  href="#"
+                  size="lg"
+                >
+                  {item}
+                </Link>
+              ) : (
+                <Link
+                  className="w-full"
+                  color="foreground" // Adjust color as needed
+                  href={item.path}
+                  size="lg"
+                >
+                  {item.label}
+                </Link>
+              )}
             </NavbarMenuItem>
           ))}
         </NavbarMenu>
