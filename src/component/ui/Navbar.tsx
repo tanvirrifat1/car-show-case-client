@@ -71,9 +71,11 @@ const Navbars = () => {
             <Link href="#">Login</Link>
           </NavbarItem>
           <NavbarItem>
-            <Button as={Link} color="warning" href="#" variant="flat">
-              Sign Up
-            </Button>
+            <Link href="/signup">
+              <Button color="warning" variant="flat">
+                Sign Up
+              </Button>
+            </Link>
           </NavbarItem>
         </NavbarContent>
 
