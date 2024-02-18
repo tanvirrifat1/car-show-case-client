@@ -2,13 +2,61 @@
 
 import Form from "@/component/Forms/Form";
 import FormInput from "@/component/Forms/FormInput";
+import { useUserSignUpMutation } from "@/redux/api/authApi";
 import Link from "next/link";
-import React from "react";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
-  const onSubmit = async (data: any) => {
-    console.log(data);
+  const [userSignUp] = useUserSignUpMutation();
+  const router = useRouter();
+  const [image, setImage] = useState<File | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files && e.target.files[0];
+    setImage(file);
   };
+
+  const onSubmit = async (data: any) => {
+    setLoading(true);
+
+    if (!image) {
+      toast.error("please select image");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("image", image);
+
+    const url = `https://api.imgbb.com/1/upload?key=c71fd21009b2244466212ed88a7ea531`;
+
+    const response = await fetch(url, {
+      method: "POST",
+      body: formData,
+    });
+
+    if (response.ok) {
+      const responseData = await response.json();
+      if (responseData.data) {
+        data.profileImage = responseData.data.display_url;
+        const res = await userSignUp(data);
+
+        if (res) {
+          toast.success("signUp Successfully!");
+          router.push("/login");
+          setLoading(false);
+        }
+      }
+    }
+  };
+
+  if (loading) {
+    return (
+      <p className="text-center items-center mt-52 text-3xl">Loading...</p>
+    );
+  }
 
   return (
     <div className="my-6">
@@ -34,7 +82,7 @@ const SignUp = () => {
                   <input
                     type="file"
                     accept="image/*"
-                    // onChange={handleImageChange}
+                    onChange={handleImageChange}
                     className="file-input file-input-bordered w-full"
                   />
                 </div>
