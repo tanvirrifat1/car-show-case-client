@@ -6,11 +6,13 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import logos from "../../../public/images/Computer login-bro.png";
+import { IoEyeSharp } from "react-icons/io5";
 
 const Login = () => {
   const [loading, setLoading] = useState<Boolean>(false);
-
   const [error, setError] = useState<string>("");
+
+  const [seePassword, setSeePassword] = useState<boolean>(false);
 
   const handleSubmit = async (data: any) => {
     console.log(data);
@@ -45,8 +47,32 @@ const Login = () => {
                         />
                       </div>
                     </div>
-
                     <div>
+                      <div className="mt-2">
+                        <FormInput
+                          id="password"
+                          name="password"
+                          type={seePassword ? "text" : "password"}
+                          label="Password"
+                          className="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        />
+                        <div className="flex items-center justify-between my-5">
+                          <div className="form-control">
+                            <input
+                              type="checkbox"
+                              id="showPassword"
+                              checked={seePassword}
+                              onChange={() => setSeePassword(!seePassword)}
+                              className="mr-2"
+                            />
+                            <label htmlFor="showPassword" className="text-sm">
+                              Show Password
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {/* <div>
                       <div className="mt-2">
                         <FormInput
                           id="password"
@@ -60,7 +86,7 @@ const Login = () => {
                         <div className="form-control"></div>
                         <div className="text-sm"></div>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
 
                   <div className="mt-4 flex justify-center ">
