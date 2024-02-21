@@ -1,7 +1,7 @@
 import { Spinner } from "@nextui-org/react";
 import React from "react";
 
-const loading = () => {
+const Loading = () => {
   return (
     <div className="flex justify-center items-center mt-60">
       <Spinner color="primary" labelColor="primary" />
@@ -9,4 +9,4 @@ const loading = () => {
   );
 };
 
-export default loading;
+export default Loading;

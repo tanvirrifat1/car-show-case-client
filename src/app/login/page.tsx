@@ -33,7 +33,7 @@ const Login = () => {
       console.log(res);
 
       if (res?.data?.accessToken) {
-        // router.push("/home");
+        router.push("/profile");
         toast.success("user login successfully");
         setLoading(false);
         storeUserInfo({ accessToken: res?.data?.accessToken });
