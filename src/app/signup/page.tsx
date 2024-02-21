@@ -164,8 +164,11 @@ const SignUp = () => {
             </div>
           </div>
 
-          <div className="flex justify-center">
-            <button type="submit" className="btn btn-outline w-72 rounded-full">
+          <div className="flex justify-center mt-2">
+            <button
+              type="submit"
+              className="btn border border-black w-72 h-12 rounded-full"
+            >
               Signup
             </button>
           </div>

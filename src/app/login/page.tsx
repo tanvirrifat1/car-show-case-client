@@ -7,15 +7,33 @@ import Link from "next/link";
 import React, { useState } from "react";
 import logos from "../../../public/images/Computer login-bro.png";
 import { IoEyeSharp } from "react-icons/io5";
+import toast from "react-hot-toast";
+import { useUserLoginMutation } from "@/redux/api/authApi";
+import { useRouter } from "next/navigation";
+import { storeUserInfo } from "@/services/auth.services";
 
 const Login = () => {
   const [loading, setLoading] = useState<Boolean>(false);
   const [error, setError] = useState<string>("");
+  const router = useRouter();
+  const [userLogin] = useUserLoginMutation();
 
   const [seePassword, setSeePassword] = useState<boolean>(false);
 
   const handleSubmit = async (data: any) => {
-    console.log(data);
+    try {
+      const res: any = await userLogin({ ...data }).unwrap();
+      console.log(res);
+
+      if (res?.data?.accessToken) {
+        // router.push("/home");
+        toast.success("user login successfully");
+        setLoading(false);
+        storeUserInfo({ accessToken: res?.data?.accessToken });
+      }
+    } catch (error: any) {
+      toast.error("error", error);
+    }
   };
 
   return (
