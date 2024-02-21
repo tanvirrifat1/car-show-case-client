@@ -10,9 +10,16 @@ import { IoEyeSharp } from "react-icons/io5";
 import toast from "react-hot-toast";
 import { useUserLoginMutation } from "@/redux/api/authApi";
 import { useRouter } from "next/navigation";
-import { storeUserInfo } from "@/services/auth.services";
+import {
+  getUserInfo,
+  isLoggedIn,
+  storeUserInfo,
+} from "@/services/auth.services";
 
 const Login = () => {
+  console.log(getUserInfo());
+  console.log(isLoggedIn());
+
   const [loading, setLoading] = useState<Boolean>(false);
   const [error, setError] = useState<string>("");
   const router = useRouter();
