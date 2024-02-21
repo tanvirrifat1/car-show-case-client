@@ -5,21 +5,14 @@ import FormInput from "@/component/Forms/FormInput";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
-import logos from "../../../public/images/Computer login-bro.png";
+import logos from "../../../src/assets/images/Computer login-bro.png";
 import { IoEyeSharp } from "react-icons/io5";
 import toast from "react-hot-toast";
 import { useUserLoginMutation } from "@/redux/api/authApi";
 import { useRouter } from "next/navigation";
-import {
-  getUserInfo,
-  isLoggedIn,
-  storeUserInfo,
-} from "@/services/auth.services";
+import { getUserInfo, storeUserInfo } from "@/services/auth.services";
 
 const Login = () => {
-  console.log(getUserInfo());
-  console.log(isLoggedIn());
-
   const [loading, setLoading] = useState<Boolean>(false);
   const [error, setError] = useState<string>("");
   const router = useRouter();
