@@ -2,6 +2,7 @@
 
 import Loading from "@/app/loading";
 import Navbars from "@/component/ui/Navbar";
+import Footer from "@/component/ui/Footer";
 import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
 
@@ -26,7 +27,7 @@ export default function DashboardLayout({
     <section>
       <Navbars />
       {children}
-      {/* <Footer /> */}
+      <Footer />
     </section>
   );
 }

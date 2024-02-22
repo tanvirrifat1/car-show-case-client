@@ -37,7 +37,7 @@ export const getToken = () => {
 
 export const isLoggedin = () => {
   const authToken = getFromLocalStorage(authKey);
-  console.log(authToken);
+
   return !!authToken;
 };
 

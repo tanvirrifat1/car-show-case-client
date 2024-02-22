@@ -19,8 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Toaster />
-        <Providers>{children}</Providers>
+        <div className="max-w-screen-xl mx-auto">
+          <Toaster />
+          <Providers>{children}</Providers>
+        </div>
       </body>
     </html>
   );
