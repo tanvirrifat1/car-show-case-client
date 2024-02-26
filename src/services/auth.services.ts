@@ -43,4 +43,5 @@ export const isLoggedin = () => {
 
 export const removeUserInfo = (key: string) => {
   return localStorage.removeItem(key);
+  console.log(key);
 };
